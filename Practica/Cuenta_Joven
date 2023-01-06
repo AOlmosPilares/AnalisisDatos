@@ -1,0 +1,34 @@
+from Cuenta import cuenta
+from Persona import Persona
+
+
+#Constructor
+class CuentaJoven(cuenta):
+    
+    def __init__(self,titular:Persona,cantidad=0.0,bonificacion=0.0):
+        super().__init__(titular,cantidad) 
+        self.__bonificacion = bonificacion
+    
+    
+    def tit_val(self)->bool:
+        return 17<self.titular.edad<25
+    
+    def retirar(self,cantidad:float): 
+        if self.tit_val():  
+            super().retirar(cantidad) 
+
+    def mostrar(self)->str:
+        return f"Cuenta Joven\nNombre:{self.titular.nombre}\nBonificación: {self.__bonificacion}"
+    
+    #Getter
+    
+    @property 
+    def bonificacion(self)->float:
+        return self.__bonificacion
+    
+    #Setter
+    
+    @bonificacion.setter 
+    def bonificacion(self,bonificacion:float):
+        if bonificacion<=1:
+            self.__bonificacion = bonificacion
